@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -18,204 +20,256 @@ box-sizing:border-box;
 }
 
 body{
-background:#0f0f12;
+background:
+linear-gradient(
+180deg,
+#141216,
+#0d0b10
+);
 font-family:'Cormorant Garamond',serif;
 overflow-x:hidden;
 min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-position:relative;
+padding:20px;
 }
 
-/* Floating hearts */
+/* Floating side hearts */
 
-.heart{
+#heartField{
+position:fixed;
+inset:0;
+pointer-events:none;
+overflow:hidden;
+z-index:1;
+}
+
+.sideHeart{
 position:absolute;
-width:14px;
-height:14px;
-background:#c24a5b;
+width:16px;
+height:16px;
+background:#c84f64;
 transform:rotate(-45deg);
-opacity:.25;
-animation:floatHeart linear infinite;
+opacity:.18;
+animation:rise linear infinite;
 }
 
-.heart:before,
-.heart:after{
+.sideHeart:before,
+.sideHeart:after{
 content:'';
 position:absolute;
-width:14px;
-height:14px;
-background:#c24a5b;
+width:16px;
+height:16px;
+background:#c84f64;
 border-radius:50%;
 }
 
-.heart:before{
-top:-7px;
+.sideHeart:before{
+top:-8px;
 left:0;
 }
 
-.heart:after{
-left:7px;
+.sideHeart:after{
+left:8px;
 top:0;
 }
 
-@keyframes floatHeart{
+@keyframes rise{
+
 from{
-transform:translateY(100vh) rotate(-45deg);
+transform:
+translateY(110vh)
+rotate(-45deg);
 opacity:0;
-}
-20%{
-opacity:.25;
-}
-to{
-transform:translateY(-120px) rotate(-45deg);
-opacity:0;
-}
 }
 
-/* Main container */
+20%{
+opacity:.18;
+}
+
+to{
+transform:
+translateY(-100px)
+rotate(-45deg);
+opacity:0;
+}
+
+}
 
 .wrapper{
 position:relative;
-z-index:5;
+z-index:10;
 width:100%;
-padding:20px;
+max-width:900px;
 display:flex;
 justify-content:center;
 align-items:center;
 }
 
-/* Envelope */
+/* Opening */
 
-.envelope-container{
+.opening{
 text-align:center;
 }
 
 .title{
 font-family:'Playfair Display',serif;
-font-size:clamp(2rem,5vw,4rem);
-color:#fff;
-margin-bottom:40px;
-opacity:.95;
+font-size:clamp(2.5rem,5vw,4.8rem);
+color:white;
+margin-bottom:35px;
 }
+
+/* Envelope */
 
 .envelope{
 position:relative;
-width:320px;
-height:220px;
-margin:auto;
+width:min(340px,85vw);
+height:230px;
 cursor:pointer;
-transition:.8s;
+margin:auto;
+perspective:1000px;
 }
 
 .envelope-back{
 position:absolute;
 width:100%;
 height:100%;
-background:#f3e7d7;
-border-radius:6px;
+background:#f4e7d6;
+border-radius:8px;
 box-shadow:
-0 20px 40px rgba(0,0,0,.35);
+0 25px 50px rgba(0,0,0,.35);
 overflow:hidden;
 }
 
-.envelope-flap{
+.flap{
 position:absolute;
 width:100%;
 height:100%;
-background:#ead9c4;
-clip-path:polygon(0 0,100% 0,50% 60%);
+background:#ead8c3;
+clip-path:polygon(
+0 0,
+100% 0,
+50% 65%
+);
 transform-origin:top;
-transition:1.2s;
-z-index:4;
+transition:1.3s;
+z-index:5;
 }
 
-.envelope.open .envelope-flap{
+.envelope.open .flap{
 transform:rotateX(180deg);
+}
+
+.front{
+position:absolute;
+width:100%;
+height:100%;
+background:#efddc7;
+clip-path:polygon(
+0 100%,
+50% 48%,
+100% 100%
+);
+z-index:4;
 }
 
 .seal{
 position:absolute;
-width:70px;
-height:70px;
-background:#8b1f2e;
+width:72px;
+height:72px;
+background:#8c2235;
 border-radius:50%;
 left:50%;
-top:55%;
+top:58%;
 transform:translate(-50%,-50%);
 display:flex;
-align-items:center;
 justify-content:center;
+align-items:center;
 color:white;
-font-size:1rem;
 font-weight:bold;
-z-index:6;
-transition:.8s;
-box-shadow:0 0 20px rgba(139,31,46,.5);
+font-size:1rem;
+z-index:10;
+box-shadow:
+0 0 30px rgba(140,34,53,.5);
+transition:.6s;
 }
 
 .envelope.open .seal{
 opacity:0;
-transform:translate(-50%,-50%) scale(.5);
+transform:
+translate(-50%,-50%)
+scale(.4);
 }
 
-.envelope-front{
-position:absolute;
-width:100%;
-height:100%;
-background:#f0dfcb;
-clip-path:polygon(0 100%,50% 45%,100% 100%);
-z-index:5;
-}
-
-.open-text{
+.openLabel{
 margin-top:25px;
-color:#e5d8c7;
+color:#e5d7c5;
+letter-spacing:3px;
 font-size:1.2rem;
-letter-spacing:2px;
 }
 
-/* Letter */
+/* Hidden Letter */
 
 .letter{
 position:absolute;
-width:min(700px,92vw);
+width:min(720px,94vw);
 background:#fffaf2;
-color:#2f2a24;
 padding:50px;
-border-radius:10px;
-box-shadow:0 25px 60px rgba(0,0,0,.45);
+border-radius:12px;
+box-shadow:
+0 30px 80px rgba(0,0,0,.45);
 opacity:0;
-transform:translateY(100px) scale(.8);
-transition:1.5s;
 pointer-events:none;
+
+transform:
+translateY(140px)
+scaleY(.2);
+
+transform-origin:top;
+transition:
+transform 1.5s ease,
+opacity 1.5s ease;
+
 max-height:85vh;
 overflow-y:auto;
 }
 
 .letter.show{
+
 opacity:1;
-transform:translateY(0) scale(1);
+
 pointer-events:auto;
+
+transform:
+translateY(0)
+scaleY(1);
+
 }
 
 .letter h1{
-font-family:'Playfair Display',serif;
-font-size:clamp(2rem,4vw,3rem);
-margin-bottom:30px;
+
+font-family:
+'Playfair Display',
+serif;
+
 text-align:center;
+
+font-size:
+clamp(2rem,4vw,3.2rem);
+
+margin-bottom:30px;
+
 }
 
 .message{
-font-size:1.5rem;
+font-size:1.45rem;
 line-height:1.8;
 }
-
 .paragraph{
 opacity:0;
 transform:translateY(20px);
-transition:1.4s;
+transition:1.2s;
 margin-bottom:24px;
 }
 
@@ -230,48 +284,128 @@ font-size:1.7rem;
 font-weight:600;
 }
 
+/* Heart confetti */
+
+.confetti{
+position:fixed;
+width:12px;
+height:12px;
+background:#c84f64;
+transform:rotate(-45deg);
+pointer-events:none;
+z-index:999;
+animation:confettiFly 1.8s ease-out forwards;
+}
+
+.confetti:before,
+.confetti:after{
+content:'';
+position:absolute;
+width:12px;
+height:12px;
+background:#c84f64;
+border-radius:50%;
+}
+
+.confetti:before{
+top:-6px;
+left:0;
+}
+
+.confetti:after{
+left:6px;
+top:0;
+}
+
+@keyframes confettiFly{
+
+0%{
+opacity:1;
+}
+
+100%{
+opacity:0;
+transform:
+translate(
+var(--x),
+var(--y)
+)
+rotate(720deg);
+}
+
+}
+
+/* Floating notes */
+
 .note{
 position:fixed;
 padding:14px 20px;
-background:rgba(255,255,255,.08);
-backdrop-filter:blur(12px);
-border:1px solid rgba(255,255,255,.12);
+background:
+rgba(255,255,255,.08);
+border:
+1px solid
+rgba(255,255,255,.12);
+
+backdrop-filter:
+blur(10px);
+
 color:white;
+
 border-radius:20px;
-animation:noteFloat 6s forwards;
+
+animation:
+noteFloat 6s forwards;
+
 z-index:100;
 }
 
 @keyframes noteFloat{
+
 0%{
 opacity:0;
-transform:translateY(20px);
+transform:
+translateY(20px);
 }
+
 15%{
 opacity:1;
 }
+
 85%{
 opacity:1;
 }
+
 100%{
 opacity:0;
-transform:translateY(-30px);
+transform:
+translateY(-25px);
 }
+
 }
+
+/* Mobile */
 
 @media(max-width:768px){
 
+body{
+padding:15px;
+}
+
 .letter{
-padding:30px 22px;
+padding:28px 22px;
+max-height:88vh;
 }
 
 .message{
-font-size:1.25rem;
+font-size:1.2rem;
+}
+
+.openLabel{
+font-size:1rem;
 }
 
 .envelope{
-width:260px;
-height:180px;
+height:200px;
 }
 
 }
@@ -282,11 +416,11 @@ height:180px;
 
 <body>
 
-<div id="hearts"></div>
+<div id="heartField"></div>
 
 <div class="wrapper">
 
-<div class="envelope-container" id="envelopeSection">
+<div class="opening" id="opening">
 
 <div class="title">
 A Message For Junaid
@@ -296,25 +430,27 @@ A Message For Junaid
 
 <div class="envelope-back"></div>
 
-<div class="envelope-flap"></div>
+<div class="flap"></div>
 
 <div class="seal">
-J ❤ J
+J ♥ J
 </div>
 
-<div class="envelope-front"></div>
+<div class="front"></div>
 
 </div>
 
-<div class="open-text">
-Open Letter
+<div class="openLabel">
+OPEN LETTER
 </div>
 
 </div>
 
 <div class="letter" id="letter">
 
-<h1>My Love, Junaid</h1>
+<h1>
+My Love, Junaid
+</h1>
 
 <div class="message">
 
@@ -336,7 +472,7 @@ I love you more than I could ever express with words, and more than you'll ever 
 
 <div class="paragraph signature" id="p5">
 Forever Yours,<br>
-Jasmine ❤️
+Jasmine ♥
 </div>
 
 </div>
@@ -346,8 +482,11 @@ Jasmine ❤️
 </div>
 <script>
 
-const envelope = document.getElementById("envelope");
-const letter = document.getElementById("letter");
+const envelope =
+document.getElementById("envelope");
+
+const letter =
+document.getElementById("letter");
 
 const paragraphs = [
 document.getElementById("p1"),
@@ -357,63 +496,126 @@ document.getElementById("p4"),
 document.getElementById("p5")
 ];
 
-/* Floating hearts background */
+/* Floating hearts */
 
-const heartsContainer =
-document.getElementById("hearts");
+const heartField =
+document.getElementById("heartField");
 
-for(let i=0;i<25;i++){
+for(let i=0;i<28;i++){
 
 const heart =
 document.createElement("div");
 
-heart.classList.add("heart");
+heart.classList.add("sideHeart");
 
+const side =
+Math.random() > .5 ? "left" : "right";
+
+if(side==="left"){
 heart.style.left =
-Math.random()*100 + "vw";
+Math.random()*12 + "vw";
+}else{
+heart.style.right =
+Math.random()*12 + "vw";
+}
 
 heart.style.animationDuration =
-(10 + Math.random()*15) + "s";
+(12 + Math.random()*12) + "s";
 
 heart.style.animationDelay =
-Math.random()*10 + "s";
+Math.random()*8 + "s";
 
-heart.style.transform =
-"scale(" + (0.6 + Math.random()) + ") rotate(-45deg)";
-
-heartsContainer.appendChild(heart);
+heartField.appendChild(heart);
 
 }
 
-/* Envelope animation */
+/* Confetti burst */
 
-envelope.addEventListener("click", () => {
+function createConfetti(){
+
+for(let i=0;i<28;i++){
+
+const c =
+document.createElement("div");
+
+c.classList.add("confetti");
+
+c.style.left =
+(window.innerWidth/2) + "px";
+
+c.style.top =
+(window.innerHeight/2) + "px";
+
+c.style.setProperty(
+"--x",
+(Math.random()*400-200)+"px"
+);
+
+c.style.setProperty(
+"--y",
+(Math.random()*300-150)+"px"
+);
+
+document.body.appendChild(c);
+
+setTimeout(()=>{
+c.remove();
+},1800);
+
+}
+
+}
+
+/* Open letter */
+
+envelope.addEventListener(
+"click",
+()=>{
+
+if(
+envelope.classList.contains("open")
+) return;
 
 envelope.classList.add("open");
 
-setTimeout(() => {
+createConfetti();
+
+setTimeout(()=>{
+
+document.getElementById("opening")
+.style.opacity="0";
+
+},900);
+
+setTimeout(()=>{
+
+document.getElementById("opening")
+.style.display="none";
 
 letter.classList.add("show");
 
 showParagraphs();
 
-}, 1200);
+},1500);
 
-});
+}
+);
 
-/* Letter reveal */
+/* Paragraph reveal */
 
 function showParagraphs(){
 
-paragraphs.forEach((p,index)=>{
+paragraphs.forEach(
+(paragraph,index)=>{
 
 setTimeout(()=>{
 
-p.classList.add("show");
+paragraph.classList.add("show");
 
-}, index * 1800);
+},index*1800);
 
-});
+}
+);
 
 }
 
@@ -439,8 +641,9 @@ const notes = [
 
 function createNote(){
 
-if(!letter.classList.contains("show"))
-return;
+if(
+!letter.classList.contains("show")
+) return;
 
 const note =
 document.createElement("div");
@@ -448,27 +651,44 @@ document.createElement("div");
 note.classList.add("note");
 
 note.textContent =
-notes[Math.floor(
+notes[
+Math.floor(
 Math.random()*notes.length
-)];
+)
+];
+
+/* Keep notes away from center */
+
+const leftSide =
+Math.random() > .5;
+
+if(leftSide){
 
 note.style.left =
-(10 + Math.random()*65) + "%";
+(2 + Math.random()*12) + "%";
+
+}else{
+
+note.style.left =
+(80 + Math.random()*8) + "%";
+
+}
 
 note.style.top =
-(15 + Math.random()*65) + "%";
+(10 + Math.random()*70) + "%";
 
 document.body.appendChild(note);
 
 setTimeout(()=>{
-
 note.remove();
-
 },6000);
 
 }
 
-setInterval(createNote,8000);
+setInterval(
+createNote,
+7000
+);
 
 </script>
 
