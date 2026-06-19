@@ -1,187 +1,465 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Junaid ❤️</title>
+
+<title>A Message For Junaid</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
-body {
-    background: #050816;
-    color: white;
-    font-family: "Georgia", serif;
-    overflow: hidden;
-    height: 100vh;
+body{
+height:100vh;
+overflow:hidden;
+background:
+radial-gradient(circle at center,#13244d 0%,#081021 45%,#03050c 100%);
+color:white;
+font-family:'Cormorant Garamond',serif;
 }
 
-#stars {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
+#sky{
+position:fixed;
+width:100%;
+height:100%;
+overflow:hidden;
 }
 
-.star {
-    position: absolute;
-    background: white;
-    border-radius: 50%;
-    animation: twinkle 3s infinite ease-in-out;
+.star{
+position:absolute;
+border-radius:50%;
+background:white;
+animation:twinkle infinite ease-in-out;
 }
 
-@keyframes twinkle {
-    0%,100% { opacity: 0.2; }
-    50% { opacity: 1; }
+@keyframes twinkle{
+0%,100%{
+opacity:.2;
+transform:scale(.8);
+}
+50%{
+opacity:1;
+transform:scale(1.2);
+}
 }
 
-.container {
-    position: relative;
-    z-index: 2;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 30px;
+.moon{
+position:absolute;
+top:60px;
+right:80px;
+width:180px;
+height:180px;
+border-radius:50%;
+background:#f5f8ff;
+box-shadow:
+0 0 40px rgba(255,255,255,.4),
+0 0 80px rgba(255,255,255,.15);
+cursor:pointer;
+animation:floatMoon 8s ease-in-out infinite;
 }
 
-.card {
-    max-width: 700px;
-    animation: fadeIn 2s ease;
+.moon::after{
+content:'';
+position:absolute;
+width:180px;
+height:180px;
+border-radius:50%;
+background:#081021;
+left:55px;
+top:0;
 }
 
-h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    text-shadow: 0 0 15px rgba(255,255,255,0.4);
+@keyframes floatMoon{
+0%,100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-18px);
+}
 }
 
-.subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 35px;
-    opacity: 0.8;
+.container{
+position:relative;
+z-index:10;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
 }
 
-.message {
-    line-height: 2;
-    font-size: 1.15rem;
-    opacity: 0;
+.card{
+max-width:800px;
 }
 
-button {
-    padding: 14px 36px;
-    border: 1px solid rgba(255,255,255,0.3);
-    background: rgba(255,255,255,0.08);
-    color: white;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 1rem;
-    backdrop-filter: blur(10px);
-    transition: 0.3s;
+.hidden{
+display:none;
 }
 
-button:hover {
-    background: rgba(255,255,255,0.15);
+.opening-title{
+font-family:'Playfair Display',serif;
+font-size:4rem;
+font-weight:600;
+letter-spacing:2px;
+margin-bottom:25px;
+opacity:0;
+animation:fadeIn 2s forwards;
 }
 
-.hidden {
-    display: none;
+.open-button{
+padding:14px 40px;
+border-radius:40px;
+border:1px solid rgba(255,255,255,.25);
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(10px);
+color:white;
+font-size:1rem;
+cursor:pointer;
+transition:.4s;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.open-button:hover{
+background:rgba(255,255,255,.18);
+transform:translateY(-2px);
 }
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(15px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.main-title{
+font-family:'Playfair Display',serif;
+font-size:4rem;
+margin-bottom:10px;
+opacity:0;
+}
+
+.subtitle{
+font-size:1.4rem;
+letter-spacing:3px;
+opacity:.7;
+margin-bottom:40px;
+}
+
+.paragraph{
+font-size:1.5rem;
+line-height:1.8;
+margin-bottom:28px;
+opacity:0;
+transform:translateY(30px);
+transition:1.5s;
+}
+
+.show{
+opacity:1;
+transform:translateY(0);
+}
+
+.note{
+position:absolute;
+padding:14px 22px;
+border-radius:18px;
+background:rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.15);
+backdrop-filter:blur(10px);
+font-size:1.15rem;
+animation:floatNote 7s forwards;
+}
+
+@keyframes floatNote{
+0%{
+opacity:0;
+transform:translateY(20px);
+}
+15%{
+opacity:1;
+}
+85%{
+opacity:1;
+}
+100%{
+opacity:0;
+transform:translateY(-25px);
+}
+}
+
+.moon-popup{
+position:absolute;
+top:260px;
+right:100px;
+padding:16px 24px;
+border-radius:18px;
+background:rgba(255,255,255,.1);
+border:1px solid rgba(255,255,255,.15);
+backdrop-filter:blur(10px);
+opacity:0;
+transition:.5s;
+z-index:20;
+}
+
+.shooting-star{
+position:absolute;
+width:180px;
+height:2px;
+background:linear-gradient(to right,white,transparent);
+transform:rotate(-35deg);
+animation:shoot 2s linear forwards;
+}
+
+@keyframes shoot{
+from{
+opacity:1;
+}
+to{
+opacity:0;
+transform:translate(-900px,450px) rotate(-35deg);
+}
+}
+
+.final-message{
+margin-top:40px;
+font-size:2.5rem;
+font-family:'Playfair Display',serif;
+opacity:0;
+transition:3s;
+}
+
 </style>
+
 </head>
 
 <body>
 
-<div id="stars"></div>
+<div id="sky"></div>
+
+<div class="moon" id="moon"></div>
+
+<div class="moon-popup" id="moonPopup">
+To the moon and back ❤️
+</div>
 
 <div class="container">
 
-    <div id="opening" class="card">
-        <h1>✨</h1>
-        <p class="subtitle">Someone has something to tell you.</p>
-        <button onclick="showMessage()">Open</button>
-    </div>
+<div id="opening" class="card">
 
-    <div id="letter" class="card hidden">
-        <h1>Jasmine ❤️ Junaid</h1>
-        <p class="subtitle">Forever and Always</p>
+<h1 class="opening-title">
+A Message For Junaid
+</h1>
 
-        <div class="message" id="messageText">
-            I promise to always love you, forever and always,
-            and to stand by your side through everything life brings.
-            <br><br>
-
-            No matter where life takes us, I'll always be supporting you
-            and cheering for you every step of the way.
-            <br><br>
-
-            You're all mine, and I'm all yours.
-            <br><br>
-
-            I love you more than I could ever express with words,
-            and more than you'll ever know.
-            <br><br>
-
-            Forever yours,
-            <br>
-            Jasmine ❤️
-        </div>
-    </div>
+<button class="open-button" onclick="openLetter()">
+Open
+</button>
 
 </div>
 
+<div id="letter" class="card hidden">
+
+<h1 class="main-title" id="title">
+Jasmine ❤️ Junaid
+</h1>
+
+<div class="subtitle">
+FOREVER AND ALWAYS
+</div>
+
+<div class="paragraph" id="p1">
+I promise to always love you forever and always,
+and to stand by your side through everything life brings.
+</div>
+
+<div class="paragraph" id="p2">
+No matter where life takes us,
+I'll always be supporting you and cheering for you every step of the way.
+</div>
+
+<div class="paragraph" id="p3">
+You're all mine, and I'm all yours.
+</div>
+
+<div class="paragraph" id="p4">
+I love you more than I could ever express with words,
+and more than you'll ever know.
+</div>
+
+<div class="paragraph" id="p5">
+Forever yours,<br>
+Jasmine ❤️
+</div>
+
+<div class="final-message" id="final">
+J ❤️ J
+</div>
+
+</div>
+
+</div>
 <script>
 
-// Create stars
-const stars = document.getElementById('stars');
+const sky = document.getElementById("sky");
 
-for(let i = 0; i < 120; i++) {
-    const star = document.createElement('div');
-    star.classList.add('star');
+for(let i=0;i<250;i++){
 
-    const size = Math.random() * 3 + 1;
+    const star = document.createElement("div");
 
-    star.style.width = size + 'px';
-    star.style.height = size + 'px';
+    star.classList.add("star");
 
-    star.style.left = Math.random() * 100 + '%';
-    star.style.top = Math.random() * 100 + '%';
+    const size = Math.random()*3 + 1;
 
-    star.style.animationDelay = Math.random() * 3 + 's';
+    star.style.width = size + "px";
+    star.style.height = size + "px";
 
-    stars.appendChild(star);
+    star.style.left = Math.random()*100 + "%";
+    star.style.top = Math.random()*100 + "%";
+
+    star.style.animationDuration =
+        (Math.random()*4 + 3) + "s";
+
+    sky.appendChild(star);
 }
 
-function showMessage() {
+function openLetter(){
 
-    document.getElementById('opening').classList.add('hidden');
+    document.getElementById("opening")
+        .classList.add("hidden");
 
-    const letter = document.getElementById('letter');
-    letter.classList.remove('hidden');
+    document.getElementById("letter")
+        .classList.remove("hidden");
 
-    const msg = document.getElementById('messageText');
+    const title = document.getElementById("title");
 
-    setTimeout(() => {
-        msg.style.opacity = "1";
-        msg.style.transition = "opacity 3s ease";
-    }, 500);
+    setTimeout(()=>{
+        title.style.opacity = "1";
+        title.style.transition = "2s";
+    },500);
+
+    setTimeout(()=>{
+        document.getElementById("p1")
+            .classList.add("show");
+    },1500);
+
+    setTimeout(()=>{
+        document.getElementById("p2")
+            .classList.add("show");
+    },4000);
+
+    setTimeout(()=>{
+        document.getElementById("p3")
+            .classList.add("show");
+    },6500);
+
+    setTimeout(()=>{
+        document.getElementById("p4")
+            .classList.add("show");
+    },9000);
+
+    setTimeout(()=>{
+        document.getElementById("p5")
+            .classList.add("show");
+    },11500);
+
+    setTimeout(()=>{
+        document.getElementById("final")
+            .style.opacity = "1";
+    },15000);
 }
+
+const moon = document.getElementById("moon");
+const moonPopup = document.getElementById("moonPopup");
+
+moon.addEventListener("click",()=>{
+
+    moonPopup.style.opacity = "1";
+
+    setTimeout(()=>{
+        moonPopup.style.opacity = "0";
+    },3000);
+
+});
+
+const messages = [
+
+"Thank you for choosing me every day.",
+
+"To the moon and back.",
+
+"J + J",
+
+"Forever and always.",
+
+"I love you forever.",
+
+"You mean the world to me.",
+
+"I love you more than words can express."
+
+];
+
+function createNote(){
+
+    const note = document.createElement("div");
+
+    note.classList.add("note");
+
+    note.innerText =
+        messages[Math.floor(
+            Math.random()*messages.length
+        )];
+
+    note.style.left =
+        (10 + Math.random()*70) + "%";
+
+    note.style.top =
+        (15 + Math.random()*60) + "%";
+
+    document.body.appendChild(note);
+
+    setTimeout(()=>{
+        note.remove();
+    },7000);
+
+}
+
+setInterval(createNote, 8000);
+
+function createShootingStar(){
+
+    const star =
+        document.createElement("div");
+
+    star.classList.add("shooting-star");
+
+    star.style.left =
+        (75 + Math.random()*15) + "%";
+
+    star.style.top =
+        Math.random()*35 + "%";
+
+    document.body.appendChild(star);
+
+    setTimeout(()=>{
+        star.remove();
+    },2000);
+
+}
+
+setInterval(createShootingStar, 6000);
+
 </script>
 
 </body>
